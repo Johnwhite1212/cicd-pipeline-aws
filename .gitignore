@@ -1,0 +1,27 @@
+﻿# Python temporary files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
