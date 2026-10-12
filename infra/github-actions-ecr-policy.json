@@ -4,16 +4,16 @@
     {
       "Sid": "ECRAuthentication",
       "Effect": "Allow",
-      "Action": [
-        "ecr:GetAuthorizationToken"
-      ],
+      "Action": "ecr:GetAuthorizationToken",
       "Resource": "*"
     },
     {
-      "Sid": "PushImagesToProjectRepository",
+      "Sid": "PushAndInspectProjectImages",
       "Effect": "Allow",
       "Action": [
         "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:DescribeImages",
         "ecr:InitiateLayerUpload",
         "ecr:UploadLayerPart",
         "ecr:CompleteLayerUpload",

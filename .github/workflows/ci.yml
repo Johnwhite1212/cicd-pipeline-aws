@@ -1,5 +1,9 @@
 ﻿name: CI - Test, Validate, and Publish
 
+concurrency:
+  group: cicd-pipeline-main
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main]
