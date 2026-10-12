@@ -1,10 +1,13 @@
-﻿name: CI - Test Python Application
+﻿name: CI - Test, Validate, and Publish
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -46,3 +49,35 @@ jobs:
 
       - name: Validate Terraform
         run: terraform -chdir=infra validate
+
+  build_and_push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    needs: [test, terraform_validate]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::823963318359:role/GitHubActionsECRPushRole
+          aws-region: us-east-1
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            823963318359.dkr.ecr.us-east-1.amazonaws.com/cicd-pipeline-aws:latest
+            823963318359.dkr.ecr.us-east-1.amazonaws.com/cicd-pipeline-aws:${{ github.sha }}
