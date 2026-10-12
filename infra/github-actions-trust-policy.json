@@ -12,7 +12,7 @@
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
         },
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:Johnwhite1212/cicd-pipeline-aws:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub": "repo:Johnwhite1212@295682337/cicd-pipeline-aws@1414786660:ref:refs/heads/main"
         }
       }
     }
