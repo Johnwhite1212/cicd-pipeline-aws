@@ -150,3 +150,18 @@ This project provided hands-on practice with Python testing, Docker containeriza
 
 **Author:** John White  
 **GitHub Repository:** [cicd-pipeline-aws](https://github.com/Johnwhite1212/cicd-pipeline-aws)
+
+
+## Screenshots
+
+### GitHub Actions Workflow
+
+The CI/CD pipeline successfully runs automated tests, validates Terraform configuration, and builds and publishes the Docker image to Amazon ECR.
+
+![GitHub Actions workflow showing successful pipeline jobs](screenshots/cicd-test-successful.png)
+
+### Automated Python Tests
+
+The Python application tests pass successfully.
+
+![Successful automated Python tests](screenshots/pytest-success.png)
